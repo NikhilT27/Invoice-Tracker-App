@@ -65,7 +65,7 @@ router.post("/createInvoice", async function (req, res, next) {
       date: new Date().toISOString(),
       amount,
       imageFile,
-      status: "Pending",
+      status: "PENDING",
     });
 
     const invoice = await newInvoice.save();
@@ -112,6 +112,56 @@ router.post("/updateInvoice", async function (req, res, next) {
         });
         if (updated) {
           res.send("Invoice updated successfully");
+        }
+      } else {
+        throw new Error("Action not allowed");
+      }
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+router.post("/approveInvoice", async function (req, res, next) {
+  let { invoiceID } = req.body;
+  let headers = req.headers;
+  const updateObj = { status: "APPROVED" };
+  try {
+    const user = checkAuth(headers);
+    console.log(user);
+    const invoice = await Invoice.findById(invoiceID);
+    if (user && invoice) {
+      if (user.email === process.env.ADMIN) {
+        const updated = await Invoice.findByIdAndUpdate(invoiceID, updateObj, {
+          new: true,
+        });
+        if (updated) {
+          res.send("Invoice approved successfully");
+        }
+      } else {
+        throw new Error("Action not allowed");
+      }
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+router.post("/rejectInvoice", async function (req, res, next) {
+  let { invoiceID } = req.body;
+  let headers = req.headers;
+  const updateObj = { status: "REJECTED" };
+  try {
+    const user = checkAuth(headers);
+    console.log(user);
+    const invoice = await Invoice.findById(invoiceID);
+    if (user && invoice) {
+      if (user.email === process.env.ADMIN) {
+        const updated = await Invoice.findByIdAndUpdate(invoiceID, updateObj, {
+          new: true,
+        });
+        if (updated) {
+          res.send("Invoice rejected successfully");
         }
       } else {
         throw new Error("Action not allowed");

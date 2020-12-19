@@ -10,7 +10,7 @@ module.exports = (headers) => {
         const user = jwt.verify(token, process.env.SECRET_KEY);
         return user;
       } catch (err) {
-        throw new AuthenticationError("Invalid/Expired token");
+        throw new Error("Invalid/Expired token");
       }
     }
     throw new Error("Authentication token must be Bearer [token]");
