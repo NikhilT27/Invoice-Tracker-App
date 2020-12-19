@@ -1,38 +1,128 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0%;
+  margin: 0%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Route {
+  padding: 0%;
+  margin: 0%;
+}
+.navbar-class {
+  position: relative;
+  top: 0%;
+  padding-top: 0;
+  margin: 0%;
+  width: 100vw;
+  height: 50px;
+  background-color: orange;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header-navbar {
+  position: relative;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 50px;
+  background-color: #ff4f5a;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-title {
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+}
+
+.box {
+  width: 100vw;
+  height: 50px;
+  background-color: yellow;
+}
+
+.home-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home-divider {
+  /* height: 100vh; */
+  width: 1vw;
+}
+
+.login-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 100vw;
+  height: 80vh;
+}
+
+.login-sub-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75vh;
+  height: 75vh;
+  border: 2px solid #ff4f5a;
+  border-radius: 60px;
+  /* background-color: yellow; */
+  margin-top: 20px;
+}
+
+.signup-box {
+  background-color: #ff4f5a;
+}
+
+.vertical-line {
+  margin-top: 20px;
+  width: 2px;
+  height: 75vh;
+  background-color: #ff4f5a;
+}
+
+.login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.form-error {
+  font-size: 15px;
+  color: #ff4f5a;
+}
+
+.login-form-element {
+  display: flex;
+  flex-direction: column;
+  width: 60vh;
+  padding: 15px 30px;
+}
+
+.submit-button {
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+}
+.signup-title {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.signup-error {
+  color: black;
 }
