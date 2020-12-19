@@ -69,4 +69,28 @@ router.post("/deleteInvoice", async function (req, res, next) {
   }
 });
 
+router.post("/updateInvoice", async function (req, res, next) {
+  let { invoiceID, updateObj } = req.body;
+  let headers = req.headers;
+  try {
+    const user = checkAuth(headers);
+    console.log(user);
+    const invoice = await Invoice.findById(invoiceID);
+    if (user && invoice) {
+      if (user.email === invoice.email) {
+        const updated = await Invoice.findByIdAndUpdate(invoiceID, updateObj, {
+          new: true,
+        });
+        if (updated) {
+          res.send("Invoice updated successfully");
+        }
+      } else {
+        throw new Error("Action not allowed");
+      }
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 module.exports = router;
