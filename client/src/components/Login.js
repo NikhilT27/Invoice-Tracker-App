@@ -1,14 +1,26 @@
-import React from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  const [loginError, setLoginError] = useState("");
+  const history = useHistory();
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = async (data) => {
     const user = await axios.post("/users/login", data);
+
     if (user) {
-      // console.log(user.data);
-      localStorage.setItem("authToken", user.data.token);
+      if (user.data.token) {
+        // console.log(user.data);
+        localStorage.setItem("authToken", user.data.token);
+        // console.log(jwtDecode(localStorage.getItem("authToken")));
+        history.push("/Home");
+      } else {
+        // console.log(user.data.errors.user);
+        setLoginError(user.data.errors.user);
+      }
     }
   };
 
@@ -28,7 +40,7 @@ export default function Login() {
               },
             })}
           />
-          {errors.email && errors.email.type === "register" && (
+          {errors.email && errors.email.type === "required" && (
             <div className="form-error">*Email is required</div>
           )}
           {errors.email && errors.email.type === "pattern" && (
@@ -45,6 +57,9 @@ export default function Login() {
           {errors.password && (
             <div className="form-error">*Password is required</div>
           )}
+        </div>
+        <div className="login-form-element">
+          <div className="form-error">{loginError}</div>
         </div>
         <div className="submit-button">
           <button type="submit">Login</button>

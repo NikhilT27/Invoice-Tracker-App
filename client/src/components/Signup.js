@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
+import { useHistory } from "react-router-dom";
+
 import { useForm } from "react-hook-form";
 
 export default function Signup() {
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const [loginError, setLoginError] = useState("");
+  const history = useHistory();
+  const onSubmit = async (data) => {
+    const user = await axios.post("/users/register", data);
+
+    if (user) {
+      if (user.data.token) {
+        // console.log(user.data);
+        localStorage.setItem("authToken", user.data.token);
+        // console.log(jwtDecode(localStorage.getItem("authToken")));
+        history.push("/Home");
+      } else {
+        console.log(user.data.errors.user);
+        setLoginError(user.data.errors.user);
+      }
+    }
+  };
 
   const checkConfirmPassword = () => {
     if (watch("password") !== watch("confirmPassword")) {
@@ -13,7 +33,6 @@ export default function Signup() {
     }
   };
 
-  console.log(watch("email"));
   return (
     <div className="login-form">
       <div className="title signup-title">Signup</div>

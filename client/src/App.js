@@ -1,13 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 import Home from "./pages/Home";
 import User from "./pages/User";
+import AuthRoute from "./util/AuthRoute";
 
 function App() {
+  const user = "true";
   // const [data, setData] = useState([]);
 
   // useEffect(() => {
@@ -37,7 +40,14 @@ function App() {
         <div className="header-navbar">
           <div className="app-title">Invoice Tracker</div>
         </div>
+
         <Route exact path="/" component={User} />
+        {/* <Route exact path="/Home" component={Home} /> */}
+        <Route exact path="/Home">
+          {user ? <Home /> : <Redirect to="/" />}
+        </Route>
+
+        {/* <AuthRoute exact path="/Home" component={Home} /> */}
       </div>
     </Router>
   );
