@@ -16,6 +16,35 @@ router.get("/", function (req, res, next) {
   res.send("invoice respond with a resource");
 });
 
+router.get("/viewInvoices", async function (req, res, next) {
+  try {
+    const invoice = await Invoice.find().sort({ date: -1 });
+    if (invoice) {
+      res.send(invoice);
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+router.post("/viewInvoice", async function (req, res, next) {
+  let headers = req.headers;
+  try {
+    const user = checkAuth(headers);
+    console.log(user);
+    const invoice = await Invoice.find({ email: user.email }).sort({
+      date: -1,
+    });
+    if (invoice) {
+      console.log(invoice);
+      res.send(invoice);
+    }
+    console.log(user);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 router.post("/createInvoice", async function (req, res, next) {
   let { amount, imageFile } = req.body;
   let headers = req.headers;
