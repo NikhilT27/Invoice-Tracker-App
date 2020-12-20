@@ -45,9 +45,53 @@
 
 .home-box {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+
+.home-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100vw;
+  height: 60px;
+  background-color: orange;
+}
+
+.home-username {
+  width: auto;
+  padding: 0px 50px;
+}
+
+.home-logout {
+  width: auto;
+  padding: 0px 50px;
+
+  /* justify-content: flex-end; */
+}
+
+.home-body {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-between;
+  background-color: yellow;
+}
+
+.home-number-invoices {
+  padding: 20px 100px;
+}
+
+.home-all-invoice {
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  width: 80vw;
+  padding: 20px 20px;
+  align-items: center;
+  justify-content: space-around;
+  /* background-color: black; */
 }
 
 .home-divider {
@@ -125,4 +169,46 @@
 
 .signup-error {
   color: black;
+}
+
+.open-invoice-box {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 300px;
+  height: 300px;
+  background-color: #ff4f5a;
+}
+
+.invoice-option-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #ff4f5a;
+  border-radius: 60px;
+}
+
+.option-sub-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: "auto";
+  height: "auto";
+
+  margin-top: 20px;
+}
+.delete-invoice {
+  padding: 20px;
+}
+
+.delete-box {
+  /* background-color: #ff4f5a; */
+}
+
+.option-buttons-box {
+  display: flex;
+  width: auto;
+  align-items: center;
+  justify-content: space-between;
 }
