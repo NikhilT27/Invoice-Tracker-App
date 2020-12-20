@@ -2,3 +2,20 @@
   base    = "client"
   publish = "/build"
   command = "npm build"
+
+[[redirects]]
+  from = "/users"
+  to = "https://invoice-tracker-27.herokuapp.com/users"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
+
+
+[[redirects]]
+  from = "/invoice"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
