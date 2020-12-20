@@ -10,9 +10,6 @@ import PendingInvoiceAdmin from "../components/PendingInvoiceAdmin";
 
 function Home() {
   const [user, setUser] = useState({});
-  const [allInvoices, setAllInvoices] = useState({});
-  const [userInvoices, setUserInvoices] = useState({});
-  const [countInvoices, setCountInvoices] = useState(0);
   const [pendingClicked, setPendingClicked] = useState(false);
   const history = useHistory();
   useEffect(() => {
@@ -20,38 +17,8 @@ function Home() {
       setUser(jwtDecode(localStorage.getItem("authToken")));
       // console.log(jwtDecode(localStorage.getItem("authToken")));
       // console.log(user);
-      if (user) {
-        getAllInvoices();
-        getUserInvoices();
-      }
     }
   }, []);
-
-  async function getAllInvoices() {
-    const allInvoices = await axios.get("/invoice/viewInvoices");
-    if (allInvoices) {
-      setAllInvoices(allInvoices.data);
-      console.log(allInvoices.data);
-    }
-  }
-
-  async function getUserInvoices() {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      console.log("token");
-    }
-    const result = await axios.post(
-      "/invoice/viewInvoice",
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    if (result) {
-      setUserInvoices(result.data);
-      // console.log(result.data);
-    }
-  }
 
   const Logout = () => {
     localStorage.removeItem("authToken");
@@ -85,18 +52,14 @@ function Home() {
         {user.email === "admin@gmail.com" ? (
           <div className="home-body">
             {pendingClicked ? (
-              <PendingInvoiceAdmin allInvoices={allInvoices} />
+              <PendingInvoiceAdmin />
             ) : (
-              <ApprovedInvoiceAdmin allInvoices={allInvoices} />
+              <ApprovedInvoiceAdmin />
             )}
           </div>
         ) : (
           <div className="home-body">
-            {pendingClicked ? (
-              <PendingInvoices userInvoices={userInvoices} />
-            ) : (
-              <ApprovedInvoice userInvoices={userInvoices} />
-            )}
+            {pendingClicked ? <PendingInvoices /> : <ApprovedInvoice />}
           </div>
         )}
       </div>

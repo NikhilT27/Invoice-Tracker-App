@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
+import axios from "axios";
 
-export default function ApprovedInvoiceAdmin({ allInvoices }) {
+export default function ApprovedInvoiceAdmin() {
+  const [allInvoices, setAllInvoices] = useState([]);
   const [fromDate, setFromDate] = useState(
     moment("2000-01-01").format("YYYY-MM-DD")
   );
 
   const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
   const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    getAllInvoices();
+  }, []);
+
+  async function getAllInvoices() {
+    const allInvoices = await axios.get("/invoice/viewInvoices");
+    if (allInvoices) {
+      setAllInvoices(allInvoices.data);
+      console.log(allInvoices.data);
+    }
+  }
+
   const getCount = () => {
     if (allInvoices.length > 0) {
       const result = allInvoices.filter(

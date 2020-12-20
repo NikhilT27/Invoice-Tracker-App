@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
+import axios from "axios";
 
 import InvoiceOptionAdmin from "../components/InvoiceOptionAdmin";
 
-export default function PendingInvoiceAdmin({ allInvoices }) {
+export default function PendingInvoiceAdmin() {
+  const [allInvoices, setAllInvoices] = useState([]);
   const [fromDate, setFromDate] = useState(
     moment("2000-01-01").format("YYYY-MM-DD")
   );
 
   const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
   const [optionInvoiceID, setOptionInvoiceID] = useState("");
+
+  useEffect(() => {
+    getAllInvoices();
+  }, []);
+  async function getAllInvoices() {
+    const allInvoices = await axios.get("/invoice/viewInvoices");
+    if (allInvoices) {
+      setAllInvoices(allInvoices.data);
+      console.log(allInvoices.data);
+    }
+  }
 
   const getCount = () => {
     if (allInvoices.length > 0) {

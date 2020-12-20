@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
+import axios from "axios";
 
 import AddInvoice from "./AddInvoice";
 
-export default function ApprovedInvoice({ userInvoices }) {
+export default function ApprovedInvoice() {
+  const [userInvoices, setUserInvoices] = useState([]);
   const [fromDate, setFromDate] = useState(
     moment("2000-01-01").format("YYYY-MM-DD")
   );
@@ -11,6 +13,29 @@ export default function ApprovedInvoice({ userInvoices }) {
   const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
 
   const [addInvoiceOpen, setAddInvoiceOpen] = useState(false);
+
+  useEffect(() => {
+    getUserInvoices();
+  }, []);
+
+  async function getUserInvoices() {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      console.log("token");
+    }
+
+    const result = await axios.post(
+      "/invoice/viewInvoice",
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    if (result) {
+      setUserInvoices(result.data);
+      console.log(result.data);
+    }
+  }
 
   const getCount = () => {
     if (userInvoices.length > 0) {

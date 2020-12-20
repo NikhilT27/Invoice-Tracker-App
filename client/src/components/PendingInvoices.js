@@ -1,16 +1,42 @@
 import { set } from "mongoose";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
+import axios from "axios";
 
 import InvoiceOption from "../components/InvoiceOption";
 
-export default function PendingInvoices({ userInvoices }) {
+export default function PendingInvoices() {
+  const [userInvoices, setUserInvoices] = useState([]);
+
   const [fromDate, setFromDate] = useState(
     moment("2000-01-01").format("YYYY-MM-DD")
   );
 
   const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
   const [optionInvoiceID, setOptionInvoiceID] = useState("");
+
+  useEffect(() => {
+    getUserInvoices();
+  }, []);
+
+  async function getUserInvoices() {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      console.log("token");
+    }
+
+    const result = await axios.post(
+      "/invoice/viewInvoice",
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    if (result) {
+      setUserInvoices(result.data);
+      console.log(result.data);
+    }
+  }
 
   const openInvoice = (invoice) => {
     console.log(`clicked ${invoice._id}`);
