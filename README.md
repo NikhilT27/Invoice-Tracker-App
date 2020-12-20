@@ -7,7 +7,8 @@
 
 </div>
 ## Introduction
-    #User
+
+    # User
     This Invoice Tracker App allows **USER** to login or signup. And to perform CRUD operation.
     1. Login or sign up at User page, will redirect to Home page.
     2. Click on "pending" bottom to view "Pending Invoices".
@@ -15,7 +16,7 @@
     4. Click on "Add" floating button, to create new invoice.
     5. Click on "Logout", will logout user.  
     
-    #Admin
+    # Admin
     This Invoice Tracker App allows **ADMIN** to login. And to perform Approve/Reject operation.
     1. Login at User page using email: **admin@gmail.com** and password: **admin**, will redirect to Home page.
     2. Click on "pending" bottom to view "All Pending Invoices".
