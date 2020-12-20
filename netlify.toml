@@ -4,12 +4,18 @@
   command = "npm build"
 
 [[redirects]]
-  from = "/users"
-  to = "https://invoice-tracker-27.herokuapp.com/users"
+  from = "/users/login"
+  to = "https://invoice-tracker-27.herokuapp.com/users/login"
   status = 200
   force = true # COMMENT: ensure that we always redirect
-  headers = {X-From = "Netlify"}
-  signed = "API_SIGNATURE_TOKEN"
+ 
+[[redirects]]
+  from = "/users/register"
+  to = "https://invoice-tracker-27.herokuapp.com/users/register"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+ 
+
 
 
 [[redirects]]
@@ -17,5 +23,4 @@
   to = "https://invoice-tracker-27.herokuapp.com/invoice"
   status = 200
   force = true # COMMENT: ensure that we always redirect
-  headers = {X-From = "Netlify"}
-  signed = "API_SIGNATURE_TOKEN"
+ 
