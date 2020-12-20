@@ -46,10 +46,13 @@ router.post("/viewInvoice", async function (req, res, next) {
 });
 
 router.post("/createInvoice", async function (req, res, next) {
-  let { amount, imageFile } = req.body;
+  let { name, amount, imageFile } = req.body;
   let headers = req.headers;
   try {
     const user = checkAuth(headers);
+    if (name.trim() === "") {
+      throw new Error("Name value must not empty");
+    }
 
     if (amount.trim() === "") {
       throw new Error("Amount value must not empty");
@@ -63,6 +66,7 @@ router.post("/createInvoice", async function (req, res, next) {
       email: user.email,
       user: user.id,
       date: new Date().toISOString(),
+      name,
       amount,
       imageFile,
       status: "PENDING",
