@@ -7,6 +7,7 @@ import InvoiceOption from "../components/InvoiceOption";
 
 export default function PendingInvoices() {
   const [userInvoices, setUserInvoices] = useState([]);
+  // let userInvoices = {};
 
   const [fromDate, setFromDate] = useState(
     moment("2000-01-01").format("YYYY-MM-DD")
@@ -34,7 +35,8 @@ export default function PendingInvoices() {
     );
     if (result) {
       setUserInvoices(result.data);
-      console.log(result.data);
+
+      console.log(userInvoices);
     }
   }
 

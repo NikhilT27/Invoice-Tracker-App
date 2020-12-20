@@ -147,7 +147,7 @@ export default function ApprovedInvoice() {
         className="float-add-button"
         onClick={() => setAddInvoiceOpen(!addInvoiceOpen)}
       >
-        Add
+        {addInvoiceOpen ? "Cancel" : "Add"}
       </div>
     </div>
   );
