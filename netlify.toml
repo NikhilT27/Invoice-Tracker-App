@@ -9,12 +9,16 @@
   to = "https://invoice-tracker-27.herokuapp.com/users/login"
   status = 200
   force = true # COMMENT: ensure that we always redirect
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
  
 [[redirects]]
   from = "/users/register"
   to = "https://invoice-tracker-27.herokuapp.com/users/register"
   status = 200
   force = true # COMMENT: ensure that we always redirect
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
  
 
 [[redirects]]
@@ -22,40 +26,48 @@
   to = "https://invoice-tracker-27.herokuapp.com/invoice/"
   status = 200
   force = true # COMMENT: ensure that we always redirect
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
  
  [[redirects]]
   from = "/invoice/viewInvoices"
   to = "https://invoice-tracker-27.herokuapp.com/invoice/viewInvoices"
   status = 200
   force = true # COMMENT: ensure that we always redirect
-
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
+ 
  [[redirects]]
   from = "/invoice/viewInvoice"
   to = "https://invoice-tracker-27.herokuapp.com/invoice/viewInvoice"
   status = 200
   force = true # COMMENT: ensure that we always redirect
-
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
 
  [[redirects]]
   from = "/invoice/createInvoice"
   to = "https://invoice-tracker-27.herokuapp.com/invoice/createInvoice"
   status = 200
   force = true # COMMENT: ensure that we always redirect
-
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
 
  [[redirects]]
   from = "/invoice/deleteInvoice"
   to = "https://invoice-tracker-27.herokuapp.com/invoice/deleteInvoice"
   status = 200
   force = true # COMMENT: ensure that we always redirect
-
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
 
  [[redirects]]
   from = "/invoice/updateInvoice"
   to = "https://invoice-tracker-27.herokuapp.com/invoice/updateInvoice"
   status = 200
   force = true # COMMENT: ensure that we always redirect
-
+  headers = {X-From = "Netlify"}
+  signed = "API_SIGNATURE_TOKEN"
 
  [[redirects]]
   from = "/invoice/approveInvoice"
