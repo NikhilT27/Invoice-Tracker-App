@@ -9,8 +9,35 @@ export default function AddInvoice() {
   const history = useHistory();
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = async (data) => {
-    console.log(data);
+    if (data) {
+      console.log(data);
+      const token = localStorage.getItem("authToken");
+      const user = await axios.post("/invoice/createInvoice", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (user) {
+        console.log(user);
+        history.go(0);
+      }
+    }
   };
+
+  //   const rejectInvoice = async () => {
+  //     const token = localStorage.getItem("authToken");
+  //     const user = await axios.post(
+  //       "/invoice/rejectInvoice",
+  //       { invoiceID },
+  //       {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       }
+  //     );
+  //     if (user) {
+  //       console.log(user);
+  //       history.go(0);
+  //       // history.push("/Home");
+  //     }
+  //     console.log("reject");
+  //   };
 
   return (
     <div className="login-form">
@@ -44,12 +71,12 @@ export default function AddInvoice() {
         <div className="login-form-element">
           <label>Image</label>
           <input
-            name="image"
+            name="imageFile"
             ref={register({
               required: true,
             })}
           />
-          {errors.image && errors.image.type === "required" && (
+          {errors.imageFile && errors.imageFile.type === "required" && (
             <div className="form-error">*Image is required</div>
           )}
         </div>
@@ -57,7 +84,7 @@ export default function AddInvoice() {
           <div className="form-error">{loginError}</div>
         </div>
         <div className="submit-button">
-          <button type="submit">Login</button>
+          <button type="submit">Create</button>
         </div>
       </form>
     </div>
