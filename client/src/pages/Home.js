@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 
 import ApprovedInvoice from "../components/ApprovedInvoice";
 import PendingInvoices from "../components/PendingInvoices";
+import ApprovedInvoiceAdmin from "../components/ApprovedInvoiceAdmin";
+import PendingInvoiceAdmin from "../components/PendingInvoiceAdmin";
 
 function Home() {
   const [user, setUser] = useState({});
@@ -19,7 +21,7 @@ function Home() {
       // console.log(jwtDecode(localStorage.getItem("authToken")));
       // console.log(user);
       if (user) {
-        // getAllInvoices();
+        getAllInvoices();
         getUserInvoices();
       }
     }
@@ -29,7 +31,7 @@ function Home() {
     const allInvoices = await axios.get("/invoice/viewInvoices");
     if (allInvoices) {
       setAllInvoices(allInvoices.data);
-      // console.log(allInvoices.data);
+      console.log(allInvoices.data);
     }
   }
 
@@ -69,13 +71,23 @@ function Home() {
             <button onClick={() => Logout()}>Logout</button>
           </div>
         </div>
-        <div className="home-body">
-          {pendingClicked ? (
-            <PendingInvoices userInvoices={userInvoices} />
-          ) : (
-            <ApprovedInvoice userInvoices={userInvoices} />
-          )}
-        </div>
+        {user.email === "admin@gmail.com" ? (
+          <div className="home-body">
+            {pendingClicked ? (
+              <PendingInvoiceAdmin allInvoices={allInvoices} />
+            ) : (
+              <ApprovedInvoiceAdmin allInvoices={allInvoices} />
+            )}
+          </div>
+        ) : (
+          <div className="home-body">
+            {pendingClicked ? (
+              <PendingInvoices userInvoices={userInvoices} />
+            ) : (
+              <ApprovedInvoice userInvoices={userInvoices} />
+            )}
+          </div>
+        )}
       </div>
       <div className="add-invoice"></div>
     </>

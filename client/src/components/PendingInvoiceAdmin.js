@@ -1,13 +1,12 @@
-import { set } from "mongoose";
 import React, { useState } from "react";
 
-import InvoiceOption from "../components/InvoiceOption";
+import InvoiceOptionAdmin from "../components/InvoiceOptionAdmin";
 
-export default function PendingInvoices({ userInvoices }) {
+export default function PendingInvoiceAdmin({ allInvoices }) {
   const [optionInvoiceID, setOptionInvoiceID] = useState("");
   const getCount = () => {
-    if (userInvoices.length > 0) {
-      const result = userInvoices.filter(
+    if (allInvoices.length > 0) {
+      const result = allInvoices.filter(
         (invoice) => invoice.status === "PENDING"
       );
       return result.length;
@@ -32,12 +31,12 @@ export default function PendingInvoices({ userInvoices }) {
         <div>Invoice Date</div>
         <div>Invoice Amount</div>
       </div>
-      {userInvoices.length > 0 ? (
-        userInvoices.map((invoice) => {
+      {allInvoices.length > 0 ? (
+        allInvoices.map((invoice) => {
           //   console.log(invoice);
           if (invoice.status === "PENDING") {
             return (
-              <div>
+              <div key={invoice._id}>
                 <div
                   key={invoice._id}
                   onClick={() => {
@@ -51,7 +50,7 @@ export default function PendingInvoices({ userInvoices }) {
                 </div>
                 {optionInvoiceID === invoice._id ? (
                   <div className="home-all-invoice">
-                    <InvoiceOption invoiceID={invoice._id} />
+                    <InvoiceOptionAdmin invoiceID={invoice._id} />
                   </div>
                 ) : (
                   <div></div>
