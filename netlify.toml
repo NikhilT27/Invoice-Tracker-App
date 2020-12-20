@@ -16,11 +16,62 @@
   force = true # COMMENT: ensure that we always redirect
  
 
-
-
 [[redirects]]
-  from = "/invoice"
-  to = "https://invoice-tracker-27.herokuapp.com/invoice"
+  from = "/invoice/"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice/"
   status = 200
   force = true # COMMENT: ensure that we always redirect
  
+ [[redirects]]
+  from = "/invoice/viewInvoices"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice/viewInvoices"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+
+ [[redirects]]
+  from = "/invoice/viewInvoice"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice/viewInvoice"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+
+
+ [[redirects]]
+  from = "/invoice/createInvoice"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice/createInvoice"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+
+
+ [[redirects]]
+  from = "/invoice/deleteInvoice"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice/deleteInvoice"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+
+
+ [[redirects]]
+  from = "/invoice/updateInvoice"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice/updateInvoice"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+
+
+ [[redirects]]
+  from = "/invoice/approveInvoice"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice/approveInvoice"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+
+
+ [[redirects]]
+  from = "/invoice/rejectInvoice"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice/rejectInvoice"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+
+
+ [[redirects]]
+  from = "/invoice/rejectInvoice"
+  to = "https://invoice-tracker-27.herokuapp.com/invoice/rejectInvoice"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
