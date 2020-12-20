@@ -89,7 +89,9 @@ export default function Signup() {
           )}
         </div>
         <div className="submit-button">
-          <button type="submit">Signup</button>
+          <button className="button-style botton-style-dark " type="submit">
+            Signup
+          </button>
         </div>
       </form>
     </div>

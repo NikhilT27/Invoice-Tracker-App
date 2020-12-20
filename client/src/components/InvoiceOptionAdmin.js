@@ -47,7 +47,7 @@ export default function InvoiceOptionAdmin({ invoiceID }) {
           <div className="admin-option">
             <div>
               <button
-                className="delete-invoice"
+                className="button-style botton-style-dark light-green"
                 onClick={() => approveInvoice()}
               >
                 Approve
@@ -55,7 +55,7 @@ export default function InvoiceOptionAdmin({ invoiceID }) {
             </div>
             <div>
               <button
-                className="delete-invoice"
+                className="button-style botton-style-dark"
                 onClick={() => rejectInvoice()}
               >
                 Reject

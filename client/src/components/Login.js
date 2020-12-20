@@ -62,7 +62,9 @@ export default function Login() {
           <div className="form-error">{loginError}</div>
         </div>
         <div className="submit-button">
-          <button type="submit">Login</button>
+          <button className="button-style" type="submit">
+            Login
+          </button>
         </div>
       </form>
     </div>

@@ -62,13 +62,24 @@ function Home() {
     <>
       <div className="home-box">
         <div className="home-title">
-          <div className="home-username">{`User: ${user.email} Id: ${user.id}`}</div>
+          <div className="home-username">
+            <div className="home-username-ele">{`User: ${user.email}`}</div>
+            <div className="home-username-ele">{` Id: ${user.id}`}</div>
+          </div>
           <div className="home-logout">
-            <button onClick={() => setPendingClicked(!pendingClicked)}>
+            <button
+              className="button-style"
+              onClick={() => setPendingClicked(!pendingClicked)}
+            >
               {pendingClicked ? "Invoices" : "Pending"}
               {/* Pending */}
             </button>
-            <button onClick={() => Logout()}>Logout</button>
+            <button
+              className="button-style botton-style-dark "
+              onClick={() => Logout()}
+            >
+              Logout
+            </button>
           </div>
         </div>
         {user.email === "admin@gmail.com" ? (
