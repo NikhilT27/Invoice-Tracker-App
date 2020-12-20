@@ -4,7 +4,6 @@
   command = "npm build"
 
 
-
 [[redirects]]
   from = "/users/login"
   to = "https://invoice-tracker-27.herokuapp.com/users/login"
