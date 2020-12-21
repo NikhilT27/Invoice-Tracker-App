@@ -10,17 +10,17 @@
 # User
   This Invoice Tracker App allows **USER** to login or signup. And to perform CRUD operation.
   1. Login or sign up at User page,(existing user email: **abc@gmail.com** and password: **12345**) will redirect to Home page.
-  2. Click on "pending" bottom to view "Pending Invoices".
-  3. Click on individual invoices, to show options (Update or Delete) {only work in "Pending" invoices}
-  4. Click on "Add" floating button, to create new invoice.
-  5. Click on "Logout", will logout user.  
+  2. Click on *pending* bottom to view "Pending Invoices".
+  3. Click on *individual invoices*, to show options (**Update or Delete**) {only work in **Pending** invoices}
+  4. Click on *Add* floating button, to create new invoice.
+  5. Click on *Logout*, will logout user.  
     
  # Admin
   This Invoice Tracker App allows **ADMIN** to login. And to perform Approve/Reject operation.
   1. Login at User page using email: **admin@gmail.com** and password: **admin**, will redirect to Home page.
-  2. Click on "pending" bottom to view "All Pending Invoices".
-  3. Click on individual invoices, to show options (Approve or Reject) {only work in "Pending" invoices}
-  5. Click on "Logout", will logout user.
+  2. Click on *pending* bottom to view "All Pending Invoices".
+  3. Click on *individual nvoices*, to show options (**Approve or Reject**) {only work in **Pending** invoices}
+  5. Click on *Logout*, will logout user.
 
 ## Getting Started
 
