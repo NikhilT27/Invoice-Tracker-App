@@ -17,7 +17,7 @@ export default function AddInvoice() {
       });
       if (user) {
         console.log(user);
-        history.push("/Home");
+        history.go(0);
       }
     }
   };

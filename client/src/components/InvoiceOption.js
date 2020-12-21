@@ -57,12 +57,12 @@ export default function InvoiceOption({ invoiceID }) {
   return (
     <div className="invoice-option-box">
       <div className="option-sub-box ">
-        <div className="login-form">
+        <div className="login-form option-size">
           <div className="title ">Update</div>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="login-form-element">
-              <label>Only enter data that need to be changed</label>
+              <label>*Only enter data that need to be changed</label>
             </div>
             <div className="login-form-element">
               <label className="">Name</label>
@@ -89,15 +89,20 @@ export default function InvoiceOption({ invoiceID }) {
             </div>
             <div className="login-form-element">
               <div className="option-buttons-box">
-                <div className="submit-button">
-                  <button type="submit">Update</button>
+                <div className="submit-button ">
+                  <button className="button-style" type="submit">
+                    Update
+                  </button>
                 </div>
               </div>
             </div>
           </form>
         </div>
         <div>
-          <button className="delete-invoice" onClick={() => deleteInvoice()}>
+          <button
+            className="delete-invoice button-style botton-style-dark"
+            onClick={() => deleteInvoice()}
+          >
             Delete
           </button>
         </div>

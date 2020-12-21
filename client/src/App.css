@@ -217,6 +217,10 @@
   justify-content: center;
 }
 
+.option-size {
+  width: 50vw;
+}
+
 .form-error {
   font-size: 15px;
   color: #ff4f5a;
@@ -262,6 +266,7 @@
 .invoice-option-box {
   display: flex;
   align-items: center;
+
   justify-content: space-between;
   /* width: 100vw; */
   border: 2px solid #ff4f5a;
