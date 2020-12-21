@@ -1,1 +1,5 @@
 /Home /index.html 200
+
+/users/*  https://invoice-tracker-27.herokuapp.com/users/:splat  200
+
+/invoice/*  https://invoice-tracker-27.herokuapp.com/invoice/:splat  200
