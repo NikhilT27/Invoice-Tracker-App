@@ -29,7 +29,12 @@ export default function PendingInvoiceAdmin() {
       const result = allInvoices.filter(
         (invoice) =>
           invoice.status === "PENDING" &&
-          moment(invoice.date).isBetween(fromDate, toDate)
+          moment(invoice.date).isBetween(
+            fromDate,
+            moment(toDate).add(1, "d").format("YYYY-MM-DD"),
+            undefined,
+            "[]"
+          )
       );
       return result.length;
     }
@@ -99,7 +104,12 @@ export default function PendingInvoiceAdmin() {
           //   console.log(invoice);
           if (
             invoice.status === "PENDING" &&
-            moment(invoice.date).isBetween(fromDate, toDate)
+            moment(invoice.date).isBetween(
+              fromDate,
+              moment(toDate).add(1, "d").format("YYYY-MM-DD"),
+              undefined,
+              "[]"
+            )
           ) {
             return (
               <div key={invoice._id}>

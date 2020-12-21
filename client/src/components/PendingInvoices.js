@@ -20,6 +20,7 @@ export default function PendingInvoices() {
     getUserInvoices();
   }, []);
 
+  console.log(moment(toDate).add(1, "d").format("YYYY-MM-DD"));
   async function getUserInvoices() {
     const token = localStorage.getItem("authToken");
     if (token) {
@@ -54,7 +55,12 @@ export default function PendingInvoices() {
       const result = userInvoices.filter(
         (invoice) =>
           invoice.status === "PENDING" &&
-          moment(invoice.date).isBetween(fromDate, toDate)
+          moment(invoice.date).isBetween(
+            fromDate,
+            moment(toDate).add(1, "d").format("YYYY-MM-DD"),
+            undefined,
+            "[]"
+          )
       );
       return result.length;
     }
@@ -67,6 +73,13 @@ export default function PendingInvoices() {
     if (amount) {
       countTotal += Number(amount);
     }
+  };
+
+  const checkDate = (value) => {
+    if (value != {}) {
+      return moment(value.date).isSame(toDate);
+    }
+    return false;
   };
 
   return (
@@ -111,10 +124,27 @@ export default function PendingInvoices() {
       </div>
       {userInvoices.length > 0 ? (
         userInvoices.map((invoice) => {
-          //   console.log(invoice);
+          console.log(
+            `invoice ${invoice.status === "PENDING"} |date ${
+              moment(invoice.date).isAfter(fromDate) ||
+              moment(invoice.date).isBefore(toDate) ||
+              moment(invoice.date).isSame(fromDate) ||
+              moment(invoice.date).isSame(toDate)
+            } | moment = ${moment(invoice.date).isBetween(
+              fromDate,
+              moment(toDate).add(1, "d").format("YYYY-MM-DD"),
+              undefined,
+              "[]"
+            )}`
+          );
           if (
             invoice.status === "PENDING" &&
-            moment(invoice.date).isBetween(fromDate, toDate)
+            moment(invoice.date).isBetween(
+              fromDate,
+              moment(toDate).add(1, "d").format("YYYY-MM-DD"),
+              undefined,
+              "[]"
+            )
           ) {
             return (
               <div>
