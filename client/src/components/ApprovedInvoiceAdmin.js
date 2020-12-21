@@ -28,7 +28,12 @@ export default function ApprovedInvoiceAdmin() {
       const result = allInvoices.filter(
         (invoice) =>
           invoice.status === "APPROVED" &&
-          moment(invoice.date).isBetween(fromDate, toDate)
+          moment(invoice.date).isBetween(
+            fromDate,
+            moment(toDate).add(1, "d").format("YYYY-MM-DD"),
+            undefined,
+            "[]"
+          )
       );
       return result.length;
     }
@@ -91,7 +96,12 @@ export default function ApprovedInvoiceAdmin() {
           // console.log(invoice);
           if (
             invoice.status === "APPROVED" &&
-            moment(invoice.date).isBetween(fromDate, toDate)
+            moment(invoice.date).isBetween(
+              fromDate,
+              moment(toDate).add(1, "d").format("YYYY-MM-DD"),
+              undefined,
+              "[]"
+            )
           ) {
             return (
               <div
