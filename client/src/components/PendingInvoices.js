@@ -7,6 +7,8 @@ import InvoiceOption from "../components/InvoiceOption";
 
 export default function PendingInvoices() {
   const [userInvoices, setUserInvoices] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   // let userInvoices = {};
 
   const [fromDate, setFromDate] = useState(
@@ -22,6 +24,8 @@ export default function PendingInvoices() {
 
   console.log(moment(toDate).add(1, "d").format("YYYY-MM-DD"));
   async function getUserInvoices() {
+    setLoading(true);
+
     const token = localStorage.getItem("authToken");
     if (token) {
       console.log("token");
@@ -35,10 +39,13 @@ export default function PendingInvoices() {
       }
     );
     if (result) {
+      setLoading(false);
+
       setUserInvoices(result.data);
 
       console.log(userInvoices);
     }
+    return setLoading(false);
   }
 
   const openInvoice = (invoice) => {
@@ -122,7 +129,11 @@ export default function PendingInvoices() {
         <div className="invoice-date">Invoice Date</div>
         <div className="invoice-amount">Invoice Amount</div>
       </div>
-      {userInvoices.length > 0 ? (
+      {loading ? (
+        <div className="loader-div">
+          <div className="loader-invoice"></div>
+        </div>
+      ) : userInvoices.length > 0 ? (
         userInvoices.map((invoice) => {
           console.log(
             `invoice ${invoice.status === "PENDING"} |date ${
@@ -174,8 +185,9 @@ export default function PendingInvoices() {
           }
         })
       ) : (
-        <div></div>
+        <div className="empty-invoices">Empty Pending Invoices !!</div>
       )}
+
       <div className="home-all-invoice default-footer">
         <div>Total Amount</div>
         <div></div>

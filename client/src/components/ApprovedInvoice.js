@@ -6,6 +6,8 @@ import AddInvoice from "./AddInvoice";
 
 export default function ApprovedInvoice() {
   const [userInvoices, setUserInvoices] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [fromDate, setFromDate] = useState(
     moment("2000-01-01").format("YYYY-MM-DD")
   );
@@ -19,6 +21,7 @@ export default function ApprovedInvoice() {
   }, []);
 
   async function getUserInvoices() {
+    setLoading(true);
     const token = localStorage.getItem("authToken");
     if (token) {
       console.log("token");
@@ -32,9 +35,11 @@ export default function ApprovedInvoice() {
       }
     );
     if (result) {
+      setLoading(false);
       setUserInvoices(result.data);
       console.log(result.data);
     }
+    return setLoading(false);
   }
 
   const getCount = () => {
@@ -112,7 +117,11 @@ export default function ApprovedInvoice() {
             <div className="invoice-date">Invoice Date</div>
             <div className="invoice-amount">Invoice Amount</div>
           </div>
-          {userInvoices.length > 0 ? (
+          {loading ? (
+            <div className="loader-div">
+              <div className="loader-invoice"></div>
+            </div>
+          ) : userInvoices.length > 0 ? (
             userInvoices.map((invoice) => {
               //   console.log(invoice);
               if (
@@ -143,8 +152,9 @@ export default function ApprovedInvoice() {
               }
             })
           ) : (
-            <div></div>
+            <div className="empty-invoices">Empty Approved Invoices !!</div>
           )}
+
           <div className="home-all-invoice default-footer">
             <div>Total Amount</div>
             <div></div>

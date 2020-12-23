@@ -6,6 +6,8 @@ import InvoiceOptionAdmin from "../components/InvoiceOptionAdmin";
 
 export default function PendingInvoiceAdmin() {
   const [allInvoices, setAllInvoices] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [fromDate, setFromDate] = useState(
     moment("2000-01-01").format("YYYY-MM-DD")
   );
@@ -17,11 +19,15 @@ export default function PendingInvoiceAdmin() {
     getAllInvoices();
   }, []);
   async function getAllInvoices() {
+    setLoading(true);
     const allInvoices = await axios.get("/invoice/viewInvoices");
     if (allInvoices) {
+      setLoading(false);
+
       setAllInvoices(allInvoices.data);
       console.log(allInvoices.data);
     }
+    return setLoading(false);
   }
 
   const getCount = () => {
@@ -99,7 +105,11 @@ export default function PendingInvoiceAdmin() {
         <div className="invoice-date">Invoice Date</div>
         <div className="invoice-amount">Invoice Amount</div>
       </div>
-      {allInvoices.length > 0 ? (
+      {loading ? (
+        <div className="loader-div">
+          <div className="loader-invoice"></div>
+        </div>
+      ) : allInvoices.length > 0 ? (
         allInvoices.map((invoice) => {
           //   console.log(invoice);
           if (
@@ -145,8 +155,9 @@ export default function PendingInvoiceAdmin() {
           }
         })
       ) : (
-        <div></div>
+        <div className="empty-invoices">Empty Pending Invoices !!</div>
       )}
+
       <div className="home-all-invoice default-footer">
         <div>Total Amount</div>
         <div></div>

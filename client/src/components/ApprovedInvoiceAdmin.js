@@ -4,6 +4,8 @@ import axios from "axios";
 
 export default function ApprovedInvoiceAdmin() {
   const [allInvoices, setAllInvoices] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [fromDate, setFromDate] = useState(
     moment("2000-01-01").format("YYYY-MM-DD")
   );
@@ -16,11 +18,14 @@ export default function ApprovedInvoiceAdmin() {
   }, []);
 
   async function getAllInvoices() {
+    setLoading(true);
     const allInvoices = await axios.get("/invoice/viewInvoices");
     if (allInvoices) {
+      setLoading(false);
       setAllInvoices(allInvoices.data);
       console.log(allInvoices.data);
     }
+    return setLoading(false);
   }
 
   const getCount = () => {
@@ -91,7 +96,11 @@ export default function ApprovedInvoiceAdmin() {
         <div className="invoice-date">Invoice Date</div>
         <div className="invoice-amount">Invoice Amount</div>
       </div>
-      {allInvoices.length > 0 ? (
+      {loading ? (
+        <div className="loader-div">
+          <div className="loader-invoice"></div>
+        </div>
+      ) : allInvoices.length > 0 ? (
         allInvoices.map((invoice) => {
           // console.log(invoice);
           if (
@@ -123,8 +132,9 @@ export default function ApprovedInvoiceAdmin() {
           }
         })
       ) : (
-        <div></div>
+        <div className="empty-invoices">Empty Approved Invoices !!</div>
       )}
+
       <div className="home-all-invoice default-footer">
         <div>Total Amount</div>
         <div></div>
